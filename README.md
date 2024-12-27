@@ -39,3 +39,8 @@ docker exec -itu 0 jenkins-server /bin/bash
 env
 # JAVA_HOME=/opt/java/openjdk
 ```
+
+
+4. Jenkins credential 설정
+
+https://jenakim47.tistory.com/73
