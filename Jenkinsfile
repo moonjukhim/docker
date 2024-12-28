@@ -5,6 +5,7 @@ pipeline{
         dockerHubRegistry = 'moonjukhim/docker' // dockerHub에 repository 명
         dockerHubRegistryCredential = 'DockerHubID' // Jenkins에서 생성한 dockerhub-credential-ID값
         githubCredential = 'jenkins-git-id' // Jenkins에서 생성한 github-credential-ID값
+        PATH = "/usr/local/bin:${env.PATH}"
     }
 // 1. git repository 가 체크되는지 확인, 제대로 연동이 안될 경우, 이 단계(stage) 에서 fail 발생
     stages {
