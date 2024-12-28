@@ -35,6 +35,10 @@ sudo docker logs jenkins-server
 # docker exec -itu 0 {컨테이너 이름} /bin/bash
 docker exec -itu 0 jenkins-server /bin/bash
 
+jenkins에도 docker 클라이언트가 필요하기때문에 같이 설치해준다.
+docker exec jenkins apt update
+docker exec jenkins apt install -y docker.io 
+
 # #
 env
 # JAVA_HOME=/opt/java/openjdk
