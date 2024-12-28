@@ -25,6 +25,7 @@ pipeline{
 // 3. Dockefile build 
         stage('docker image build'){
             steps{
+                sh 'docker --version'
                 sh "docker build . -t ${dockerHubRegistry}:${currentBuild.number}"
                 sh "docker build . -t ${dockerHubRegistry}:latest"
             }
