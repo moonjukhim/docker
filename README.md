@@ -26,7 +26,7 @@ sudo docker ps
 # sudo docker rm [dockerid]
 
 sudo docker logs jenkins-server
-# copy password from log bfe7d090dee7423f944c8c0df50f66da
+# copy password from log 950abf21efaa405da6264221a432a73e
 ```
 
 3. Jenkins 접속 및 설정
@@ -39,6 +39,8 @@ sudo docker exec -itu 0 jenkins-server /bin/bash
 jenkins에도 docker 클라이언트가 필요하기때문에 같이 설치해준다.
 docker exec jenkins-server apt update
 docker exec jenkins-server apt install -y docker.io
+sudo chmod 777 /var/run/docker.sock
+sudo chown root:docker /var/run/docker.sock
 
 # #
 env
@@ -47,6 +49,10 @@ env
 
 4. Jenkins credential 설정
 
-https://jenakim47.tistory.com/73
+   https://jenakim47.tistory.com/73
+
+   - Developer settings > Personal access tokens > 생성
+   - jenkins에서 두개의 credential 생성
+   - Secret text / secret / id(github-token)
 
 5.
