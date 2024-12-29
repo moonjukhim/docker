@@ -20,9 +20,10 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 2.
 
 ```bash
-sudo docker run -d -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 --restart=on-failure --name jenkins-server jenkins/jenkins:lts-jdk11
+sudo docker run -d -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock  -p 8080:8080 -p 50000:50000 --restart=on-failure --name jenkins-server jenkins/jenkins:lts-jdk11
 
 sudo docker ps
+# sudo docker rm [dockerid]
 
 sudo docker logs jenkins-server
 # copy password from log bfe7d090dee7423f944c8c0df50f66da
@@ -33,20 +34,19 @@ sudo docker logs jenkins-server
 ```bash
 # https://velog.io/@gobeul/Docker-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EB%A1%9C-Jenkins-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
 # docker exec -itu 0 {컨테이너 이름} /bin/bash
-docker exec -itu 0 jenkins-server /bin/bash
+sudo docker exec -itu 0 jenkins-server /bin/bash
 
 jenkins에도 docker 클라이언트가 필요하기때문에 같이 설치해준다.
-docker exec jenkins apt update
-docker exec jenkins apt install -y docker.io 
+docker exec jenkins-server apt update
+docker exec jenkins-server apt install -y docker.io
 
 # #
 env
 # JAVA_HOME=/opt/java/openjdk
 ```
 
-
 4. Jenkins credential 설정
 
 https://jenakim47.tistory.com/73
 
-5. 
+5.
