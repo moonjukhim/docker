@@ -7,6 +7,7 @@ pipeline{
         githubCredential = 'jenkins-github-id' // Jenkins에서 생성한 github-credential-ID값
         PATH = "/usr/local/bin:${env.PATH}"
     }
+
 // 1. git repository 가 체크되는지 확인, 제대로 연동이 안될 경우, 이 단계(stage) 에서 fail 발생
     stages {
         stage('check out application git branch'){
@@ -43,7 +44,7 @@ pipeline{
 
         stage('Docker Image Push') {
             steps {
-                withDockerRegistry([ credentialsId: dockerHubRegistryCredential, url: "" ]) {
+                docker.withRegistry([ credentialsId: dockerHubRegistryCredential, url: "" ]) {
                     sh "docker push ${dockerHubRegistry}:${currentBuild.number}"
                     sh "docker push ${dockerHubRegistry}:latest"
 
