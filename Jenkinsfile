@@ -30,7 +30,7 @@ pipeline{
             script{
                 docker.withRegistry('https://registry.hub.docker.com', dockerHubRegistryCredential) {
                     def app = docker.build(${dockerHubRegistry}:${currentBuild.number})
-                    app.push(${currentBuild.number})
+                    app.push()
                 }
             }
             
