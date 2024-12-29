@@ -46,7 +46,7 @@ pipeline{
             steps {
                 echo "Push Docker"
                 script{
-                    docker.withRegistry('',${dockerHubRegistryCredential}) {
+                    docker.withRegistry(${dockerHubRegistryCredential},'') {
                         sh "docker push ${dockerHubRegistry}:${currentBuild.number}"
                         sh "docker push ${dockerHubRegistry}:latest"
 
