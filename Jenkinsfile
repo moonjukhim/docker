@@ -28,8 +28,9 @@ pipeline{
         stage('docker image build'){
             steps{
                 sh "docker --version"
-                sh "docker build . -t ${dockerHubRegistry}:${currentBuild.number}"
-                sh "docker build . -t ${dockerHubRegistry}:latest"
+                /* sh "docker build . -t ${dockerHubRegistry}:${currentBuild.number}" */
+                sh "docker build . -t moonjukhim/docker:30"
+                /* sh "docker build . -t ${dockerHubRegistry}:latest" */
             }
             post {
                     failure {
@@ -51,7 +52,7 @@ pipeline{
 
                         /* sh "docker push ${dockerHubRegistry}:${currentBuild.number}"  */
                         /* sh "docker push ${dockerHubRegistry}:latest" */
-                        sh "docker push moonjukhim/docker:30  
+                        sh "docker push moonjukhim/docker:30"
                         sleep 10 /* Wait uploading */
                     }
                 }
