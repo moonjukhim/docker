@@ -48,8 +48,9 @@ pipeline{
                 script{
                     docker.withRegistry('https://registry.hub.docker.com', dockerHubRegistryCredential) {
                         sh "docker images"
-                        sh "docker push ${dockerHubRegistry}:${currentBuild.number}"
-                        sh "docker push ${dockerHubRegistry}:latest"
+
+                        /* sh "docker push ${dockerHubRegistry}:${currentBuild.number}" */
+                        /* sh "docker push ${dockerHubRegistry}:latest" */
 
                         sleep 10 /* Wait uploading */
                     }
