@@ -50,8 +50,8 @@ pipeline{
                         sh "docker images"
 
                         /* sh "docker push ${dockerHubRegistry}:${currentBuild.number}"  */
-                        sh "docker push ${dockerHubRegistry}:latest" 
-
+                        /* sh "docker push ${dockerHubRegistry}:latest" */
+                        sh "docker push moonjukhim/docker:30  
                         sleep 10 /* Wait uploading */
                     }
                 }
