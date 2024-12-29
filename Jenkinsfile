@@ -44,11 +44,14 @@ pipeline{
 
         stage('Docker Image Push') {
             steps {
-                withRegistry([ credentialsId: dockerHubRegistryCredential, url: "" ]) {
-                    sh "docker push ${dockerHubRegistry}:${currentBuild.number}"
-                    sh "docker push ${dockerHubRegistry}:latest"
+                echo "Push Docker"
+                script{
+                    withRegistry([ credentialsId: dockerHubRegistryCredential, url: "" ]) {
+                        sh "docker push ${dockerHubRegistry}:${currentBuild.number}"
+                        sh "docker push ${dockerHubRegistry}:latest"
 
-                    sleep 10 /* Wait uploading */
+                        sleep 10 /* Wait uploading */
+                    }
                 }
             }
             post {
