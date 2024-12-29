@@ -25,50 +25,26 @@ pipeline{
         }
 
 // 3. Dockefile build 
-        stage('docker image build'){
-            steps{
-                sh "docker --version"
-                /* sh "docker build . -t ${dockerHubRegistry}:${currentBuild.number}" */
-                sh "docker build . -t moonjukhim/docker:30"
-                /* sh "docker build . -t ${dockerHubRegistry}:latest" */
-            }
-            post {
-                    failure {
-                      echo 'Docker image build failure !'
-                    }
-                    success {
-                      echo 'Docker image build success !'
-                    }
-            }
-        }
-
-
-        stage('Docker Image Push') {
-            steps {
-                echo "Push Docker"
-                script{
-                    docker.withRegistry('https://registry.hub.docker.com', dockerHubRegistryCredential) {
-                        sh "docker images"
-
-                        /* sh "docker push ${dockerHubRegistry}:${currentBuild.number}"  */
-                        /* sh "docker push ${dockerHubRegistry}:latest" */
-                        sh "docker push moonjukhim/docker:30"
-                        sleep 10 /* Wait uploading */
-                    }
+    stage('docker image build & push'){
+        steps{
+            script{
+                docker.withRegistry('https://registry.hub.docker.com', dockerHubRegistryCredential) {
+                    def app = docker.build(${dockerHubRegistry}:${currentBuild.number})
+                    app.push(${currentBuild.number})
                 }
             }
-            post {
-                    failure {
-                      echo 'Docker Image Push failure !'
-                      sh "docker rmi ${dockerHubRegistry}:${currentBuild.number}"
-                      sh "docker rmi ${dockerHubRegistry}:latest"
-                    }
-                    success {
-                      echo 'Docker image push success !'
-                      sh "docker rmi ${dockerHubRegistry}:${currentBuild.number}"
-                      sh "docker rmi ${dockerHubRegistry}:latest"
-                    }
-            }
+            
+            /* sh "docker --version" */
+            /* sh "docker build . -t ${dockerHubRegistry}:${currentBuild.number}" */
+            /* sh "docker build . -t ${dockerHubRegistry}:latest" */
+        }
+        post {
+                failure {
+                    echo 'Docker image build failure !'
+                }
+                success {
+                    echo 'Docker image build success !'
+                }
         }
     }
 }
