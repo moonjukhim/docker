@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: k8s
+  name: k8s
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s
+  template:
+    metadata:
+      labels:
+        app: k8s
+    spec:
+      containers:
+      - name: k8s
+        image: dongjukim123/docker:25
+        ports:
+          - containerPort: 8080
