@@ -3,7 +3,7 @@ pipeline{
 
     environment {
         dockerHubRegistry = 'moonjukhim/docker'         // dockerHub의 repository 명
-        dockerHubRegistryCredential = 'docker-hub-id'   // Jenkins에서 생성한 dockerhub-credential-ID값
+        dockerHubRegistryCredential = 'jenkins-dockerhub-id'   // Jenkins에서 생성한 dockerhub-credential-ID값
         githubCredential = 'jenkins-github-id'          // Jenkins에서 생성한 github-credential-ID값
         PATH = "/usr/local/bin:${env.PATH}"
     }
