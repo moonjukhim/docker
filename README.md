@@ -31,10 +31,6 @@ sudo docker logs jenkins-server
 
 3. Jenkins 접속 및 설정
 
-````bash
-# https://velog.io/@gobeul/Docker-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EB%A1%9C-Jenkins-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
-# docker exec -itu 0 {컨테이너 이름} /bin/bash
-
 ```bash
 sudo docker exec -itu 0 jenkins-server /bin/bash
 
@@ -47,7 +43,7 @@ sudo chown root:docker /var/run/docker.sock
 # #
 env
 # JAVA_HOME=/opt/java/openjdk
-````
+```
 
 4. Jenkins에서 github credential 설정
 
