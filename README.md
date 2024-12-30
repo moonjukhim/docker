@@ -77,6 +77,10 @@ env
 
    - 새로운 item
    - Pipeline
+     - Github project
+       - Project url : https://github.com/moonjukhim/docker
+     - Build Triggers
+       - GitHub hook trigger for GITScm polling (Check)
      - Pipeline script from SCM
        - SCM : Git
          - Repository URL : https://github.com/moonjukhim/docker
@@ -97,4 +101,16 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
 #
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 –d
 # https://velog.io/@rlaehdwn0105/GCP%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-Jenkins-ArgoCD-CICD-%EA%B5%AC%ED%98%84
+kubectl get pods,service -n argocd
 ```
+
+9. Git kubernetes-manifests
+
+   - git repository -> setting -> webhook
+   - Payload URL : http://(jenkins IP:Jenkins port)/github-webhook/?job=(파이프라인)
+   - Content Type : application/json
+   - Just the push event
+
+10. argocd
+
+    - https://github.com/moonjukhim/kube-manifest.git
