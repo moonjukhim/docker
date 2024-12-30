@@ -86,6 +86,8 @@ env
 
 7. Docker Pipeline Plugins 설치
 
+   - docker pipeline
+
 8. ArgoCD 설치
 
 ```bash
