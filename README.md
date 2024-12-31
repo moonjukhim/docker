@@ -47,8 +47,6 @@ env
 
 4. Jenkins에서 github credential 설정
 
-   https://jenakim47.tistory.com/73
-
    - Developer settings > Personal access tokens > 생성
    - jenkins에서 두개의 credential 생성
 
@@ -98,6 +96,7 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 –d ; echo
 # https://velog.io/@rlaehdwn0105/GCP%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-Jenkins-ArgoCD-CICD-%EA%B5%AC%ED%98%84
 kubectl get pods,service -n argocd
+kubectl create namespace gitops
 ```
 
 9. Git kubernetes-manifests
