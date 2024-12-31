@@ -86,7 +86,7 @@ pipeline{
 
                     // 배포될 때 마다 버전이 올라야 하므로 deployment.yaml 에서 ksw7734/docker:버전 을 sed
                     // -i 로 ${currentBuild.number} 변수를 이용해 변경
-                    sh "sed -i 's/docker:.*\$/docker:${currentBuild.number}/' deployment.yaml"
+                    sh "sed -i 's/docker:.*\$/docker:${currentBuild.number}/' deployments.yaml"
                     sh "git add deployment.yaml"
                     sh "git commit -m '[UPDATE] k8s ${currentBuild.number} image versioning'"
                     
