@@ -81,8 +81,8 @@ pipeline{
                     sh "git config --global user.email moonju.khim@gmail.com"
                     sh "git config --global user.name moonjukhim"
                     sh "pwd"
-                    sh "cp ./kube-manifests/deployments.yaml ./gitOpsRepo/"
-                    sh "cp ./kube-manifests/service.yaml ./gitOpsRepo/"
+                    sh "cp ../kube-manifests/deployments.yaml ."
+                    sh "cp ../kube-manifests/service.yaml ."
 
                     // 배포될 때 마다 버전이 올라야 하므로 deployment.yaml 에서 ksw7734/docker:버전 을 sed
                     // -i 로 ${currentBuild.number} 변수를 이용해 변경
