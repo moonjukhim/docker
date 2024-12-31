@@ -68,5 +68,44 @@ pipeline{
             }
         }
 
+ // 5. 쿠버네티스 배포 작업
+        stage('K8S Manifest Update') {
+            steps {
+                sh "ls"
+                sh 'mkdir -p gitOpsRepo'
+                dir("gitOpsRepo")
+                {
+                    git branch: "main",
+                    credentialsId: githubCredential,
+                    url: 'https://github.com/moonjukhim/kube-manifest.git' 
+                    sh "git config --global user.email moonju.khim@gmail.com"
+                    sh "git config --global user.name moonjukhim"
+                    
+                    sh "cp ../kube-manifests/deployments.yaml ."
+                    sh "cp ../kube-manifests/service.yaml ."                   
+
+                    // 배포될 때 마다 버전이 올라야 하므로 deployment.yaml 에서 moonjukhim/docker:버전 을 sed
+                    // -i 로 ${currentBuild.number} 변수를 이용해 변경
+                    sh "sed -i 's/docker:.*\$/docker:${currentBuild.number}/' deployments.yaml"
+                    sh "git add deployments.yaml"
+                    sh "git commit -m '[UPDATE] k8s ${currentBuild.number} image versioning'"
+                    
+                    withCredentials([gitUsernamePassword(credentialsId: githubCredential,
+                                     gitToolName: 'git-tool')]) {
+                        sh "git remote set-url origin https://github.com/moonjukhim/kube-manifest"
+                        sh "git push -u origin main"
+                    }
+                }
+            }
+            post {
+                    failure {
+                      echo 'K8S Manifest Update failure !'
+                    }
+                    success {
+                      echo 'K8S Manifest Update success !'
+                    }
+            }
+        }
+
     }
 }
