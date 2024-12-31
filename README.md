@@ -100,12 +100,13 @@ kubectl get pods,service -n argocd
 kubectl create namespace gitops
 ```
 
-9. Git kubernetes-manifests
+9. Git Polling 설정(kubernetes-manifests, Poll or Webhook)
 
-   - git repository -> setting -> webhook
-   - Payload URL : http://(jenkins IP:Jenkins port)/github-webhook/?job=(파이프라인)
-   - Content Type : application/json
-   - Just the push event
+   - Webhook
+     - git repository -> setting -> webhook
+     - Payload URL : http://(jenkins IP:Jenkins port)/github-webhook/?job=(파이프라인)
+     - Content Type : application/json
+     - Just the push event
 
 10. argocd
 
