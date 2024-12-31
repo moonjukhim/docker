@@ -110,3 +110,14 @@ kubectl get pods,service -n argocd
 10. argocd
 
     - https://github.com/moonjukhim/kube-manifest.git
+    - Settings 에서 Projects 생성
+      - Project Name : gitops
+      - Desc : gitops
+    - Repositories
+      - CONNECT REPO
+        - connection method : VIA HTTPS
+        - Type : git
+        - Project : gitops
+        - Repository URL : https://github.com/moonjukhim/kube-manifest.git
+        - Username : moonjukhim
+        - Password : [이전의 Git PAT 토큰]
