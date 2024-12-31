@@ -4,7 +4,7 @@ provider "google" {
 
 resource "google_container_cluster" "gke_cluster" {
   name     = "cluster-1"
-  location = "us-central1"
+  location = "us-central1-a"
 
   initial_node_count = 2
 
