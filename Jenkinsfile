@@ -80,7 +80,7 @@ pipeline{
                     url: 'https://github.com/moonjukhim/kube-manifest.git' 
                     sh "git config --global user.email moonju.khim@gmail.com"
                     sh "git config --global user.name moonjukhim"
-                    sh "pwd"
+
                     sh "cp ../kube-manifests/deployments.yaml ."
                     sh "cp ../kube-manifests/service.yaml ."
 
