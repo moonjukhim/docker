@@ -80,8 +80,8 @@ pipeline{
                     url: 'https://github.com/moonjukhim/kube-manifest.git' 
                     sh "git config --global user.email moonju.khim@gmail.com"
                     sh "git config --global user.name moonjukhim"
-                    sh "cp kube-manifests/deployments.yaml gitOpsRepo/"
-                    sh "cp kube-manifests/service.yaml gitOpsRepo/"
+                    sh "cp ./kube-manifests/deployments.yaml ./gitOpsRepo/"
+                    sh "cp ./kube-manifests/service.yaml ./gitOpsRepo/"
                     // 배포될 때 마다 버전이 올라야 하므로 deployment.yaml 에서 ksw7734/docker:버전 을 sed
                     // -i 로 ${currentBuild.number} 변수를 이용해 변경
                     sh "sed -i 's/docker:.*\$/docker:${currentBuild.number}/' deployment.yaml"
