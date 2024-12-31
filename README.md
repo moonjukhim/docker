@@ -58,6 +58,7 @@ env
      - Kind : Username with password
      - username : moonjukhim
      - id : jenkins-github-id
+     - description : jenkins-github-id
 
 5. Docker Hub credential 설정
 
@@ -93,7 +94,7 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 #
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 –d ; echo
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d ; echo
 # https://velog.io/@rlaehdwn0105/GCP%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-Jenkins-ArgoCD-CICD-%EA%B5%AC%ED%98%84
 kubectl get pods,service -n argocd
 kubectl create namespace gitops
