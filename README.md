@@ -110,17 +110,30 @@ kubectl create namespace gitops
 10. argocd
 
     - https://github.com/moonjukhim/kube-manifest.git
-    - Settings 에서 Projects 생성
-      - Project Name : gitops
-      - Desc : gitops
-    - Repositories
-      - CONNECT REPO
-        - connection method : VIA HTTPS
-        - Type : git
-        - Project : gitops
-        - Repository URL : https://github.com/moonjukhim/kube-manifest.git
-        - Username : moonjukhim
-        - Password : [이전의 Git PAT 토큰]
+    - Settings
+
+      - Projects 생성
+        - Project Name : gitops
+        - Desc : gitops
+
+    - Settings
+      - Repositories
+        - CONNECT REPO
+          - connection method : VIA HTTPS
+          - Type : git
+          - Project : gitops
+          - Repository URL : https://github.com/moonjukhim/kube-manifest.git
+          - Username : moonjukhim
+          - Password : [이전의 Git PAT 토큰]
+    - Settings
+
+      - Projects에서 gitops 선택
+        - SOURCE REPOSITORIES : https://github.com/moonjukhim/kube-manifest.git
+        - DESTINATIONS : https://kubernetes.default.svc
+        - CLUSTER RESOURCE ALLOW LIST
+          - CLUSTER ROUSRCE ALLOW LIST에 default 사용
+          - NAMESPACE RESOURCE ALLOW LIST에 default 사용
+
     - Applications :
       - NEW APP :
         - Application Name : gitops-app
@@ -132,3 +145,6 @@ kubectl create namespace gitops
           - Repository URL : https://github.com/moonjukhim/kube-manifest.git
           - Revision : main
           - Path : .
+        - DESTINATION
+          - Cluster URL : https://kubernetes.default.svc
+          - Namespace : gitops
