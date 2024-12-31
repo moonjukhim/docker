@@ -77,7 +77,7 @@ pipeline{
                 {
                     git branch: "main",
                     credentialsId: githubCredential,
-                    url: 'https://github.com/moonjukhim/kube-manifests.git' 
+                    url: 'https://github.com/moonjukhim/kube-manifest.git' 
                     sh "git config --global user.email moonju.khim@gmail.com"
                     sh "git config --global user.name moonjukhim"
                     // 배포될 때 마다 버전이 올라야 하므로 deployment.yaml 에서 ksw7734/docker:버전 을 sed
@@ -88,7 +88,7 @@ pipeline{
                     
                     withCredentials([gitUsernamePassword(credentialsId: githubCredential,
                                      gitToolName: 'git-tool')]) {
-                        sh "git remote set-url origin https://github.com/moonjukhim/kube-manifests"
+                        sh "git remote set-url origin https://github.com/moonjukhim/kube-manifest"
                         sh "git push -u origin main"
                     }
                 }
