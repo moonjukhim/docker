@@ -121,3 +121,14 @@ kubectl get pods,service -n argocd
         - Repository URL : https://github.com/moonjukhim/kube-manifest.git
         - Username : moonjukhim
         - Password : [이전의 Git PAT 토큰]
+    - Applications :
+      - NEW APP :
+        - Application Name : gitops-app
+        - Project Name : gitops
+        - SYNC POLICY : Automatic
+          - PRUNE RESOURCES check
+          - SELF HEAL check
+        - SOURCE
+          - Repository URL : https://github.com/moonjukhim/kube-manifest.git
+          - Revision : main
+          - Path : .
