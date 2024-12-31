@@ -6,7 +6,7 @@ terraform plan
 terraform apply
 ```
 
-1. Docker 설치
+1. Jenkins를 실행할 노드에 Docker 설치
 
 ```bash
 sudo apt-get update
