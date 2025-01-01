@@ -1,12 +1,13 @@
 1. Google Kubernetes Engine 생성
 
 ```bash
+# nano main.tf
 terraform init
 terraform plan
 terraform apply
 ```
 
-1. Jenkins를 실행할 노드에 Docker 설치
+2. Jenkins를 실행할 노드에 Docker 설치
 
 ```bash
 sudo apt-get update
@@ -17,7 +18,7 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 
-2. 컨테이너를 이용한 Jenkins 시작
+3. 컨테이너를 이용한 Jenkins 시작
 
 ```bash
 sudo docker run -d -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock  -p 8080:8080 -p 50000:50000 --restart=on-failure --name jenkins-server jenkins/jenkins:lts-jdk11
@@ -26,7 +27,7 @@ sudo docker ps
 # sudo docker rm [dockerid]
 
 sudo docker logs jenkins-server
-# copy password from log af2a40b4425a4517abfb059f7a564ed5
+# copy password from log af2a40b4425a4XXXXXXXXXXXXXXXXXX
 ```
 
 3. Jenkins 접속 및 설정
@@ -75,7 +76,8 @@ env
      - Github project
        - Project url : https://github.com/moonjukhim/docker
      - Build Triggers
-       - GitHub hook trigger for GITScm polling (Check)
+       - GitHub hook trigger for GITScm polling (Check) or
+       - Poll SCM : H/2 \* \* \* \*
      - Pipeline script from SCM
        - SCM : Git
          - Repository URL : https://github.com/moonjukhim/docker
@@ -95,7 +97,6 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 #
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d ; echo
-# https://velog.io/@rlaehdwn0105/GCP%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-Jenkins-ArgoCD-CICD-%EA%B5%AC%ED%98%84
 kubectl get pods,service -n argocd
 kubectl create namespace gitops
 ```
@@ -110,7 +111,6 @@ kubectl create namespace gitops
 
 10. argocd
 
-    - https://github.com/moonjukhim/kube-manifest.git
     - Settings
 
       - Projects 생성
