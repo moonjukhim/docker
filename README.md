@@ -18,7 +18,7 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 
-3. 컨테이너를 이용한 Jenkins 시작
+3. 컨테이너를 이용한 Jenkins 시작 및 설정
 
 ```bash
 sudo docker run -d -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock  -p 8080:8080 -p 50000:50000 --restart=on-failure --name jenkins-server jenkins/jenkins:lts-jdk11
@@ -28,20 +28,17 @@ sudo docker ps
 
 sudo docker logs jenkins-server
 # copy password from log af2a40b4425a4XXXXXXXXXXXXXXXXXX
-```
 
-3. Jenkins 접속 및 설정
+#
+# sudo docker exec -itu 0 jenkins-server /bin/bash
 
-```bash
-sudo docker exec -itu 0 jenkins-server /bin/bash
-
-# jenkins에도 docker 클라이언트가 필요하기때문에 같이 설치해준다.
+# jenkins에도 docker 클라이언트가 필요하기때문에 같이 설치
 sudo docker exec -itu 0 jenkins-server apt update
 sudo docker exec -itu 0 jenkins-server apt install -y docker.io
 sudo chmod 777 /var/run/docker.sock
 sudo chown root:docker /var/run/docker.sock
 
-# #
+# env 명령어로 java 위치 확인
 env
 # JAVA_HOME=/opt/java/openjdk
 ```
