@@ -43,30 +43,32 @@ env
 # JAVA_HOME=/opt/java/openjdk
 ```
 
-4. /** Jenkins에서 github credential 설정 **/
+4. ** Jenkins에서 github credential 설정 **
 
-   - Developer settings > Personal access tokens > 생성
+   - Github : Developer settings > Personal access tokens > 생성
    - jenkins에서 두개의 credential 생성
 
      - Kind : Secret text
      - secret : [SECRET_VALUE]
      - id : github-token
+     - Description : github-token
 
    - jenkins에서 두개의 credential 생성
      - Kind : Username with password
-     - username : moonjukhim
-     - id : jenkins-github-id
-     - description : jenkins-github-id
+     - Username : moonjukhim
+     - ID : jenkins-github-id
+     - Description : jenkins-github-id
 
-5. Docker Hub credential 설정
+5. ** Jenkins에서 Docker Hub credential 설정 **
 
    - Docker hub를 위한 credential 생성
 
      - Kind : Username with password
      - username : moonjukhim
-     - id : jenkins-dockerhub-id
+     - ID : jenkins-dockerhub-id
+     - Description : jenkins-dockerhub-id
 
-6. Jenkins Pipeline 생성
+6. ** Jenkins Pipeline 생성 **
 
    - 새로운 item
    - Pipeline
@@ -82,11 +84,11 @@ env
        - Branches to build
          - Branch : \*/main
 
-7. Docker Pipeline Plugins 설치
+7. ** Docker Pipeline Plugins 설치 **
 
    - docker pipeline
 
-8. ArgoCD 설치
+8. ** ArgoCD 설치 **
 
 ```bash
 kubectl create namespace argocd
