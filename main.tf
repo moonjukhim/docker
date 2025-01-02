@@ -15,7 +15,7 @@ resource "google_container_cluster" "gke_cluster" {
     ]
   }
 
-  ##network    = var.network
+  # network    = var.network
   # subnetwork = var.subnetwork
 
   # IP Range for the cluster
