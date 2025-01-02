@@ -43,7 +43,7 @@ env
 # JAVA_HOME=/opt/java/openjdk
 ```
 
-4. Jenkins에서 github credential 설정
+4. /**Jenkins에서 github credential 설정**/
 
    - Developer settings > Personal access tokens > 생성
    - jenkins에서 두개의 credential 생성
